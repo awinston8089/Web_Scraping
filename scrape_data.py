@@ -194,8 +194,17 @@ def scrape():
         title = LinkSoup.find(class_="title").text.strip().replace(" Enhanced", '')
         titleurl.append({"title": title, "img_url": image})
     titleurl
+    # Creating Dictionary
+    scrapedata = {
+        "title": mars_title, 
+        "paragraph": mp,
+        "image":  jpl_image,
+        "table":  marsfacts_html,
+        "hemisphere_image": titleurl,
 
-
+    }
+# Return scrape data
+    return scrapedata
     # In[ ]:
 
 

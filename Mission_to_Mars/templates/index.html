@@ -12,6 +12,7 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -23,19 +24,53 @@
         <!-- start of title and button -->
         <h1 class="display-4">Mission to Mars</h1>
 
-        <a class="btn btn-primary btn-lg" href="../scrape_mars" role="button">Scrape New Data</a>
+        <a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a>
     </div>
     <!-- end of jumbotron -->
     <!-- Start of news and paragraph from https://mars.nasa.gov/news/ -->
-    <div class="row"></div>
-    <div class="col-md-12 news-and-paragraph"></div>
-    <div class="media mt-1 mb-2"></div>
-    <!-- makes use of the following classes: media and media bodywhich covers the entire page -->
-    <div class="media-body"></div>
-    <h4>Latest Mars News</h4>
-    <h5>class="media-body">{{ mars.news_title }}</h5>
+    <div class="container">
 
-    <p>{{ mars.news._paragraph }}</p>
+    <h2>Latest Mars News</h2>
+    <h3>{{ mars.title }}</h3>
+
+    <p><h3>{{ mars.mp }}</h3></p>
+</div>
+
+
+<br>
+<div class="container">
+    <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12">  
+    <h2> Mars Image </h2>
+    <img src="{{mars.image | default('static/images/error.png', true)}}" class="img-responsive" alt="featured image">
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-12"> 
+    <h2>Mars Facts</h2>
+    <h3>{{mars.table | safe}}</h3>
+</div>
+</div>
+</div>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12"> 
+            <h2>Mars Hemisphere</h2>
+            <br>
+    </div>
+  {% for Hemisphere in mars.hemisphere_image %}
+  <div class="col-md-6">
+      <div class="thumbnail">
+          <img src="{{Hemisphere.img_url}}" alt="">
+          <h3>{{Hemisphere.title}}</h3>
+
+      </div>
+
+  </div>
+{% endfor %}
+
+</div>
+</div>
     <!-- End of news and paragraph -->
     <!-- JPL featured image from  -->
     <!--  -->
